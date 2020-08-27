@@ -6,25 +6,26 @@ import java.util.Set;
 
 
 public class BuyProducts {
-private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<ProductItem,Integer>(); 
+	
+	private final LinkedHashMap<ProductItemInterface,Integer> productMap = new LinkedHashMap<ProductItemInterface,Integer>(); 
 	
 	DecimalFormat df = new DecimalFormat("###.00");
 	
 	public void displayOrder() {
 		System.out.println("Input: ");
-		for ( ProductItem prod : productMap.keySet() ){
+		for ( ProductItemInterface prod : productMap.keySet() ){
 			System.out.println(productMap.get(prod) + " " + prod.getProductName() + " at " + df.format(prod.getProductPrice()));
 		}	
 		System.out.println();
 	}
 	
-	public void add (ProductItem prod, int count){
+	public void add (ProductItemInterface prod, int count){
 		
 		if(prod.isProductImported()) {
 			prod = new ImportedTaxDecorator(prod);
 		}
 		
-		if(prod.isProductExcepmt()) {
+		if(!prod.isProductExcepmt()) {
 			prod = new SaleTaxDecorator(prod);
 		}
 		
@@ -41,7 +42,7 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 	
 	public double getTotalTax() {
 		double taxtotal = 0;
-		for (ProductItem prod : productMap.keySet()){	
+		for (ProductItemInterface prod : productMap.keySet()){	
 			
 			double totalProdPrice = prod.getProductPriceWithTax() * productMap.get(prod);
 			double subTotal = prod.getProductPrice() * productMap.get(prod);
@@ -53,8 +54,8 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 
 	public double getTotalPrice() {
 		double total = 0;
-		for (ProductItem prod : productMap.keySet()){		
-			double subTotal = prod.getProductPrice() * productMap.get(prod);
+		for (ProductItemInterface prod : productMap.keySet()){		
+			double subTotal = prod.getProductPriceWithTax()* productMap.get(prod);
 			total += subTotal;
 		}
 		return Utility.roundProductPrice(total);
@@ -64,8 +65,8 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 		double taxtotal = 0;
 		double total = 0;
 		System.out.println("Output: ");
-		Set<ProductItem> taxedItems = productMap.keySet();
-		for (ProductItem prod : taxedItems){		
+		Set<ProductItemInterface> taxedItems = productMap.keySet();
+		for (ProductItemInterface prod : taxedItems){		
 			double taxPerProduct = prod.getProductPriceWithTax() * productMap.get(prod);
 			double totalProdPrice = prod.getProductPrice() * productMap.get(prod);
 			taxtotal += taxPerProduct - totalProdPrice;
@@ -80,15 +81,13 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 	
 	public static void main(String[] args) {
 		
-		Utility.getProductsFromFile("in1.txt");
-		/*
+		//Utility.getProductsFromFile("i.txt");
+		
 		if(args.length > 0) { 
 			for(String filename : args)
 				Utility.getProductsFromFile(filename);
 		} else
 			System.out.println("Invalid Arguments!!");
-			
-			*/
 		
 	}
 }

@@ -2,12 +2,12 @@ package saleTax;
 
 public class ImportedTaxDecorator extends MainTaxDecorator {
 
-private ProductItem prod;
+private ProductItemInterface prod;
 	
 	final double rate = 0.05;
 
 	
-	public ImportedTaxDecorator(ProductItem prod) {
+	public ImportedTaxDecorator(ProductItemInterface prod) {
 		
 		super(prod);
 		this.prod = prod;

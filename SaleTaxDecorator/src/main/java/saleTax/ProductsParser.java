@@ -8,7 +8,7 @@ public class ProductsParser {
 	
 	private static final String PRODUCT_REGEX = "(\\d+)\\s((\\w+\\s)+)at\\s(\\d+.\\d+)";
 	
-	public static ProductItem parseProduct(String line) {
+	public static ProductItemInterface parseProduct(String line) {
 		
 		Matcher matcher = matching(line);
 		String productName = matcher.group(2).trim();

@@ -3,7 +3,7 @@ package saleTax;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.HashSet;
@@ -33,17 +33,17 @@ public class Utility {
 	
 	public static double roundProductPrice(double price) {
 
-		return new BigDecimal(price).setScale(2, RoundingMode.HALF_UP).doubleValue();
-		//df.setRoundingMode(RoundingMode.HALF_UP);
-		//return new Double(df.format(price));
+		//return new BigDecimal(price).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		return new Double(df.format(price));
 	}
 	
 	
 	static public double nearestPrice(double price) {
 
-		return new BigDecimal(Math.ceil(price * 20)/20).setScale(2,RoundingMode.HALF_UP).doubleValue();
-		//df.setRoundingMode(RoundingMode.HALF_UP);
-		//return new Double(df.format(Math.ceil(price * 20)/20));
+		//return new BigDecimal(Math.ceil(price * 20)/20).setScale(2,RoundingMode.HALF_UP).doubleValue();
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		return new Double(df.format(Math.ceil(price * 20)/20));
 
 	}
 	

@@ -1,6 +1,6 @@
 package saleTax;
 
-public interface ProductItem {
+public interface ProductItemInterface {
 	
 	String getProductName();
 	boolean isProductImported();

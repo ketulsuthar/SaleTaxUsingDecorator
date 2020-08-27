@@ -1,12 +1,12 @@
 package saleTax;
 
 
-public abstract class MainTaxDecorator implements ProductItem{
+public abstract class MainTaxDecorator implements ProductItemInterface{
 
-	protected ProductItem prodItem;
+	protected ProductItemInterface prodItem;
 	protected double rate;
 	
-	public MainTaxDecorator(ProductItem prod){
+	public MainTaxDecorator(ProductItemInterface prod){
 		this.prodItem = prod;
 	}
 	

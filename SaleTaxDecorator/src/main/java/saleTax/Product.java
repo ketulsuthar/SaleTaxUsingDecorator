@@ -1,6 +1,6 @@
 package saleTax;
 
-public class Product implements ProductItem {
+public class Product implements ProductItemInterface {
 	
 	private String productName;
 	private double  productPrice;

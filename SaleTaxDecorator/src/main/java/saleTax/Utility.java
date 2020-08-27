@@ -5,11 +5,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
 
 public class Utility {
+	
+	private static DecimalFormat df = new DecimalFormat("0.00");
 	
 	private static Set<String> exemptProducts = null;
 	static	{
@@ -31,12 +34,16 @@ public class Utility {
 	public static double roundProductPrice(double price) {
 
 		return new BigDecimal(price).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		//df.setRoundingMode(RoundingMode.HALF_UP);
+		//return new Double(df.format(price));
 	}
 	
 	
 	static public double nearestPrice(double price) {
 
 		return new BigDecimal(Math.ceil(price * 20)/20).setScale(2,RoundingMode.HALF_UP).doubleValue();
+		//df.setRoundingMode(RoundingMode.HALF_UP);
+		//return new Double(df.format(Math.ceil(price * 20)/20));
 
 	}
 	

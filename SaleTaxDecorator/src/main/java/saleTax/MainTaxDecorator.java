@@ -1,5 +1,6 @@
 package saleTax;
 
+
 public abstract class MainTaxDecorator implements ProductItem{
 
 	protected ProductItem prodItem;
@@ -12,8 +13,8 @@ public abstract class MainTaxDecorator implements ProductItem{
 	abstract double getTaxRate();
 	
 	public double getProductPriceWithTax() {
-		// TODO Auto-generated method stub
-		return 0;
+		double tax = Utility.nearestPrice(this.prodItem.getProductPrice() * this.getTaxRate());
+		return Utility.roundProductPrice(this.prodItem.getProductPriceWithTax() + tax); 
 	}
 
 }

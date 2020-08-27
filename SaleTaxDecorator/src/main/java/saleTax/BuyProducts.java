@@ -41,11 +41,14 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 	
 	public double getTotalTax() {
 		double taxtotal = 0;
-		for (ProductItem prod : productMap.keySet()){			
-			double totalProdPrice = prod.getProductPrice() * productMap.get(prod);
-			taxtotal += prod.getProductPriceWithTax() - totalProdPrice;
+		for (ProductItem prod : productMap.keySet()){	
+			
+			double totalProdPrice = prod.getProductPriceWithTax() * productMap.get(prod);
+			double subTotal = prod.getProductPrice() * productMap.get(prod);
+			taxtotal += totalProdPrice - subTotal;
+
 		}
-		return taxtotal;
+		return Utility.roundProductPrice(taxtotal);
 	}
 
 	public double getTotalPrice() {
@@ -77,11 +80,15 @@ private final LinkedHashMap<ProductItem,Integer> productMap=new LinkedHashMap<Pr
 	
 	public static void main(String[] args) {
 		
+		Utility.getProductsFromFile("in1.txt");
+		/*
 		if(args.length > 0) { 
 			for(String filename : args)
 				Utility.getProductsFromFile(filename);
 		} else
 			System.out.println("Invalid Arguments!!");
+			
+			*/
 		
 	}
 }

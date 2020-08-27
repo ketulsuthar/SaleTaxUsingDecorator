@@ -2,7 +2,7 @@ package SalesTax;
 
 public interface ProductItem {
 	
-	String getName();
+	String getProductName();
 	boolean isProductImported();
 	boolean isProductExcepmt();
 	double getProductPrice();
